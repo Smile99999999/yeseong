@@ -3,224 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>권예성 연구 포트폴리오 | Personal Branding</title>
+    <title>권예성 | 연구 포트폴리오</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
         :root {
-            --primary: #0f172a;
-            --accent: #3b82f6;
-            --bg: #f1f5f9;
-            --card: #ffffff;
-            --text: #334155;
+            --primary: #1e293b; /* 깊은 네이비 */
+            --accent: #3b82f6;  /* 신뢰감을 주는 블루 */
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
         }
 
         body {
             font-family: 'Pretendard', -apple-system, sans-serif;
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
+        /* 헤더 디자인 */
         header {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #334155 100%);
             color: white;
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1.5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            font-weight: 300;
         }
 
         .container {
-            max-width: 900px;
-            margin: -4rem auto 5rem;
+            max-width: 850px;
+            margin: -3rem auto 6rem;
             padding: 0 1.5rem;
         }
 
-        .intro {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .timeline {
-            position: relative;
-            border-left: 2px solid #cbd5e1;
-            padding-left: 2rem;
-            margin-left: 1rem;
-        }
-
-        .project-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .project-item::before {
-            content: "";
-            position: absolute;
-            left: -2.6rem;
-            top: 0.5rem;
-            width: 1rem;
-            height: 1rem;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 4px solid var(--bg);
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        /* 프로젝트 카드 스타일 */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        /* 최신 연구 강조 표시 */
+        .project-card.latest::after {
+            content: "LATEST";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            border-bottom-left-radius: 15px;
         }
 
         .date {
-            font-size: 0.85rem;
-            font-weight: 700;
+            display: inline-block;
             color: var(--accent);
-            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            padding: 0.2rem 0.8rem;
+            background: #eff6ff;
+            border-radius: 8px;
         }
 
         .title {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            margin: 0.5rem 0;
+            margin-bottom: 1rem;
             color: var(--primary);
+            letter-spacing: -0.5px;
         }
 
         .summary {
-            font-size: 0.95rem;
-            color: #64748b;
-            margin-bottom: 1.5rem;
+            color: var(--text-sub);
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
         }
 
         .tags {
-            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .tag {
-            font-size: 0.75rem;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            margin-right: 0.4rem;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
             font-weight: 600;
         }
 
+        /* 버튼 디자인 */
         .btn {
             display: inline-flex;
             align-items: center;
-            background: var(--primary);
+            background-color: var(--primary);
             color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: opacity 0.2s;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .btn:hover {
-            opacity: 0.9;
+            background-color: var(--accent);
+            transform: scale(1.02);
         }
 
-        .btn i { margin-right: 0.5rem; }
+        .btn i {
+            margin-right: 0.6rem;
+        }
 
         footer {
             text-align: center;
-            padding: 3rem;
-            color: #94a3b8;
-            font-size: 0.85rem;
+            padding: 4rem 2rem;
+            background: #f1f5f9;
+            color: var(--text-sub);
+        }
+
+        footer .social {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        @media (max-width: 640px) {
+            header h1 { font-size: 2.2rem; }
+            .project-card { padding: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>권예성 연구 기록물</h1>
-    <p>2022 - 2026 Project Archive</p>
+    <h1>권예성 | YESEONG KWON</h1>
+    <p>Data Analyst & Software Developer Research Portfolio</p>
 </header>
 
 <div class="container">
-    <div class="timeline">
 
-        <!-- 2022 Project -->
-        <div class="project-item">
-            <div class="card">
-                <span class="date">2022.12.22</span>
-                <div class="title">Save the Environment</div>
-                <p class="summary">스크래치를 활용하여 환경 보호를 주제로 한 인터랙티브 게임을 개발했습니다. 현실적인 환경 문제를 게임 알고리즘으로 풀어내어 사회적 메시지를 전달한 첫 팀 프로젝트입니다.</p>
-                <div class="tags"><span class="tag">Scratch</span><span class="tag">Environment</span><span class="tag">Team</span></div>
-                <a href="Save_the_Environment.pdf" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> 문서 열기</a>
-            </div>
+    <!-- [2026] 최신 연구 -->
+    <div class="project-card latest">
+        <span class="date">2026.05.24</span>
+        <div class="title">A시 일반계고 공학계열 진로 교육과정 특성 분석</div>
+        <p class="summary">공학계열 진학을 희망하는 학생들을 위해 학교별 개설 과목 데이터를 분석하고, 부족한 심화/융합 과목을 보완할 수 있는 과목 추천 시스템 프로토타입을 제작했습니다.</p>
+        <div class="tags">
+            <span class="tag">#Streamlit</span>
+            <span class="tag">#Education_Data</span>
+            <span class="tag">#Python_App</span>
         </div>
-
-        <!-- 2023 Spring Project -->
-        <div class="project-item">
-            <div class="card">
-                <span class="date">2023.03 - 2023.08</span>
-                <div class="title">쭈꾸미쪼꼬미 (FPS 체스)</div>
-                <p class="summary">앱 인벤터로 제작한 창의적 게임 프로젝트입니다. 체스의 전략성과 FPS의 타격감을 결합하였으며, 모바일 환경에서의 복합적인 로직 제어와 데이터 전달 방식을 연구했습니다.</p>
-                <div class="tags"><span class="tag">App Inventor</span><span class="tag">Game Design</span><span class="tag">Logic</span></div>
-                <a href="쭈꾸미쪼꼬미.pdf" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> 문서 열기</a>
-            </div>
-        </div>
-
-        <!-- 2023 Fall Project -->
-        <div class="project-item">
-            <div class="card">
-                <span class="date">2023.10 - 2023.12</span>
-                <div class="title">math_calculator</div>
-                <p class="summary">C언어 기초를 바탕으로 팩토리얼, 제곱근 등 수학 공식을 연산하는 프로그램을 개발했습니다. 재귀 함수 구현 및 표준 라이브러리 활용을 통해 프로그래밍의 기초 역량을 다졌습니다.</p>
-                <div class="tags"><span class="tag">C Language</span><span class="tag">Algorithm</span><span class="tag">Mathematics</span></div>
-                <a href="math_calculator.pdf" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> 문서 열기</a>
-            </div>
-        </div>
-
-        <!-- 2025 May Project -->
-        <div class="project-item">
-            <div class="card">
-                <span class="date">2025.05.10</span>
-                <div class="title">생활습관이 건강에 미치는 영향</div>
-                <p class="summary">데이터 분석의 첫 시작으로, 실생활 설문 데이터를 파이썬으로 분석했습니다. 가설을 세우고 상관관계를 데이터로 입증하며 객관적인 결론을 도출하는 데이터 분석 프로세스를 경험했습니다.</p>
-                <div class="tags"><span class="tag">Python</span><span class="tag">Data Analysis</span><span class="tag">Health</span></div>
-                <a href="생활습관이_건강에_미치는_영향.pdf" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> 문서 열기</a>
-            </div>
-        </div>
-
-        <!-- 2025 Aug-Oct Project -->
-        <div class="project-item">
-            <div class="card">
-                <span class="date">2025.08 - 2025.10</span>
-                <div class="title">세계 경제위기 지표 분석</div>
-                <p class="summary">IMF 및 세계은행 데이터를 활용하여 거시경제 지표 간의 관계를 분석했습니다. 파이썬 Pandas 라이브러리를 사용한 데이터 전처리와 Matplotlib 시각화 능력을 심화시켰습니다.</p>
-                <div class="tags"><span class="tag">Economics</span><span class="tag">Pandas</span><span class="tag">Visualization</span></div>
-                <a href="세계_경제위기_지표_분석.pdf" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> 문서 열기</a>
-            </div>
-        </div>
-
-        <!-- 2026 Project -->
-        <div class="project-item">
-            <div class="card">
-                <span class="date">2026.05.24</span>
-                <div class="title">공학계열 진로 교육과정 특성 분석</div>
-                <p class="summary">교육 공공 데이터를 분석하여 고교 교육과정과 대학 전공 간의 연계성을 연구했습니다. Streamlit을 활용한 과목 추천 시스템 프로토타입을 제작하여 데이터의 실질적 활용 방안을 제시했습니다.</p>
-                <div class="tags"><span class="tag">Streamlit</span><span class="tag">Public Data</span><span class="tag">Education</span></div>
-                <a href="A시_일반계고_공학계열_진로_분석.pdf" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> 문서 열기</a>
-            </div>
-        </div>
-
+        <a href="A시_일반계고_공학계열_진로_분석.pdf" class="btn" target="_blank">
+            <i class="fas fa-file-pdf"></i> 연구 결과 열기
+        </a>
     </div>
+
+    <!-- [2025-2] -->
+    <div class="project-card">
+        <span class="date">2025.08 - 2025.10</span>
+        <div class="title">세계 경제위기 지표 분석 연구</div>
+        <p class="summary">IMF와 세계은행의 공공 데이터를 활용하여 GDP, 실업률, 물가, 환율 간의 상관관계를 다국가별로 비교 분석하여 거시경제 지표의 변동성을 연구했습니다.</p>
+        <div class="tags">
+            <span class="tag">#Data_Science</span>
+            <span class="tag">#Macroeconomics</span>
+            <span class="tag">#Pandas</span>
+        </div>
+        <a href="세계_경제위기_지표_분석.pdf" class="btn" target="_blank">
+            <i class="fas fa-file-pdf"></i> 연구 결과 열기
+        </a>
+    </div>
+
+    <!-- [2025-1] -->
+    <div class="project-card">
+        <span class="date">2025.05.10</span>
+        <div class="title">생활습관이 건강에 미치는 영향</div>
+        <p class="summary">BMI지수와 운동 횟수, 야식 습관 등 현대인의 생활 습관이 건강 지표에 미치는 영향을 파이썬을 활용해 통계적으로 검증한 데이터 분석 프로젝트입니다.</p>
+        <div class="tags">
+            <span class="tag">#Hypothesis_Testing</span>
+            <span class="tag">#Health_Data</span>
+            <span class="tag">#Visual_Analytics</span>
+        </div>
+        <a href="생활습관이_건강에_미치는_영향.pdf" class="btn" target="_blank">
+            <i class="fas fa-file-pdf"></i> 연구 결과 열기
+        </a>
+    </div>
+
+    <!-- [2023-2] -->
+    <div class="project-card">
+        <span class="date">2023.10 - 2023.12</span>
+        <div class="title">C언어 기반 math_calculator 개발</div>
+        <p class="summary">재귀 함수를 활용한 팩토리얼 연산부터 원주율, 제곱근 계산까지 다양한 수학적 공식을 처리하는 함수 정의 기반 연산 프로그램을 C언어로 구현했습니다.</p>
+        <div class="tags">
+            <span class="tag">#C_Language</span>
+            <span class="tag">#Programming_Base</span>
+            <span class="tag">#Function_Design</span>
+        </div>
+        <a href="math_calculator.pdf" class="btn" target="_blank">
+            <i class="fas fa-file-pdf"></i> 연구 결과 열기
+        </a>
+    </div>
+
+    <!-- [2023-1] -->
+    <div class="project-card">
+        <span class="date">2023.03 - 2023.08</span>
+        <div class="title">쭈꾸미쪼꼬미: 앱 인벤터 FPS 체스 게임</div>
+        <p class="summary">체스의 전략성에 실시간 슈팅 요소를 결합한 독창적인 게임입니다. 앱 인벤터를 활용해 모바일 환경에서의 인터랙티브 로직과 장면 전환 기능을 개발했습니다.</p>
+        <div class="tags">
+            <span class="tag">#Mobile_App</span>
+            <span class="tag">#Game_Logic</span>
+            <span class="tag">#App_Inventor</span>
+        </div>
+        <a href="쭈꾸미쪼꼬미.pdf" class="btn" target="_blank">
+            <i class="fas fa-file-pdf"></i> 연구 결과 열기
+        </a>
+    </div>
+
+    <!-- [2022] -->
+    <div class="project-card">
+        <span class="date">2022.12.22</span>
+        <div class="title">Save the Environment: 환경 보호 게임</div>
+        <p class="summary">인류 안전을 위협하는 환경 문제를 해결하는 알고리즘을 담은 스크래치 팀 프로젝트입니다. 문제 정의부터 개발 일지 기록까지 프로젝트의 전 과정을 연구했습니다.</p>
+        <div class="tags">
+            <span class="tag">#Scratch</span>
+            <span class="tag">#Environmental_Issues</span>
+            <span class="tag">#Team_Work</span>
+        </div>
+        <a href="Save_the_Environment.pdf" class="btn" target="_blank">
+            <i class="fas fa-file-pdf"></i> 연구 결과 열기
+        </a>
+    </div>
+
 </div>
 
 <footer>
-    <p>&copy; 2026 권예성. All rights reserved. <br> 본 페이지는 개인 연구 기록 포트폴리오로 제작되었습니다.</p>
+    <p>&copy; 2026 권예성. All rights reserved.</p>
+    <p>마인드퍼스트코딩랩 주니어 데이터 분석 연구회</p>
 </footer>
 
 </body>
